@@ -8,3 +8,35 @@ body{
     min-height: 100vh;
     padding: 20px;
 }
+
+/* Utility class to hide elements (used in JavaScript) */
+.hide {
+    display: none;
+}
+/*Styling for the topic selection screen */
+
+#topic-select, #quiz-box, #result {
+    background-color: #fff9f2;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 90%;
+    max-width: 450px;
+    margin: 10px auto;
+
+}
+/*Styling for the buttons */
+button {
+    display: block;
+    margin: 10px auto;
+    padding: 16px 30px;
+    font-size: 1.3em;
+    border: none;
+    background-color: #ffd6e0;
+    border-radius: 12px;
+    cursor: pointer;
+    width: 80%;
+    transition: background-color 0.3s;
+}
+
