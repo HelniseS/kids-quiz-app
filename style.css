@@ -1,0 +1,10 @@
+/*Set base styles for the entire page */
+body{
+    font-family: Comic Sans MS, sans-serif;
+    background-color: #fff0f5;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px;
+}
