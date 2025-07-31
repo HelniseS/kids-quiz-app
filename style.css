@@ -40,3 +40,7 @@ button {
     transition: background-color 0.3s;
 }
 
+/*Styling for the buttons on hover */
+button:hover {
+    background-color: #ffb6c1;
+}
