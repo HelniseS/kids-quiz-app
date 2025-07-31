@@ -10,5 +10,19 @@ const quizzes = {
         { question: "Which animal has a trunk?", image: "assets/images/elephant.png", options: ["Cow", "Lion", "Elephant"], answer: "Elephant"},
         { question: "Which animal lays eggs?", image: "assets/images/hen.png", options: ["Hen", "Goat", "Dog"], answer: "Hen"},
         { question: "Fastest land animal?", image: "assets/images/cheetah.png", options: ["Zebra", "Horse", "Cheetah"], answer: "Cheetah"},
+    ],
+    Colors: [
+        { question: "What color is the sky?", image: "", options: ["Orange", "Blue", "Red"], answer: "Blue"},
+        { question: "What color is grass?", image: "", options: ["Pink", "Yellow", "Green"], answer: "Green"},
+        { question: "What color is a banana?", image: "", options: ["Black", "White", "Yellow"], answer: "Yellow"},
+        { question: "What color is an apple?", image:"", options: ["Purple", "Red", "Grey"], answer: "Red"},
+        { question: "What color is a lemon?", image: "", options: ["Yellow", "Purple", "Cream"], answer: "Yellow"},
+        { question: "What color are strawberries?", image: "", options: ["Red", "White", "Pink"], answer: "Red"},
+        { question: "What color is chocolate?", image: "", options: ["Black", "Blue", "Brown"], answer: "Brown"},
+        { question: "What color is the sun?", image: "", options: ["Orange", "Yellow", "Purple"], answer: "Yellow"},
+        { question: "Which is a warm color?", image: "", options: ["Red", "Blue", "Black"], answer: "Red"},
+        { question: "What do you get if you mix red and blue?", image: "", options: ["Green", "Purple", "Orange"], answer: "Purple"},
+        
     ]
+
     }
