@@ -23,6 +23,19 @@ const quizzes = {
         { question: "Which is a warm color?", image: "", options: ["Red", "Blue", "Black"], answer: "Red"},
         { question: "What do you get if you mix red and blue?", image: "", options: ["Green", "Purple", "Orange"], answer: "Purple"},
         
-    ]
+    ],
+    Numbers: [
+        { question: "What comes after 4?", image: "", options: ["2", "5", "7"], answer: "5"},
+        { question: "What comes before 9?", image: "", options: ["9", "6", "8"], answer: "8"},
+        { question: "How many legs does a spider have?", image: "", options: ["8", "10", "12"], answer: "8"},
+        { question: "What is 2 + 2?", image: "", options: ["5", "3", "4"], answer: "4"},
+        { question: "What is 5 - 3?", image: "", options: ["3", "2", "5"], answer: "2"},
+        { question: "What comes after 9?", image: "", options: ["8", "4", "10"], answer: "10"},
+        { question: "Which number is smallest?", image: "", options: ["5", "1", "9"], answer: "1"},
+        { question: "How many fingers do you have?", image: "", options: ["10", "8", "11"], answer: "10"},
+        { question: "What is 5 + 5?", image: "", options: ["9", "5", "10"], answer: "10"},
+        { question: "What comes before 1?", image: "", options: ["2", "0", "11"], answer: "0"},
+        
+    ],
 
     }
