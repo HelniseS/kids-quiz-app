@@ -37,5 +37,19 @@ const quizzes = {
         { question: "What comes before 1?", image: "", options: ["2", "0", "11"], answer: "0"},
         
     ],
+    Shapes: [
+        { question: "Which has 3 sides?", image: "", options: ["Triangle", "Circle", "Square"], answer: "Triangle"},
+        { question: "Which is round?", image: "", options: ["Rectangle", "Circle", "Hexagon"], answer: "Circle"},
+        { question: "Which has 4 equal sides?", image: "", options: ["Pentagon", "Square", "Triangle"], answer: "Square"},
+        { question: "Which has 6 sides?", image: "", options: ["Hexagon", "Octagon", "Diamond"], answer: "Hexagon"},
+        { question: "Stop sign shape?", image: "", options: ["Octagon", "Circle", "Rectangle"], answer: "Octagon"},
+        { question: "Which has corners?", image: "", options: ["Square", "Cube", "Pyramid"], answer: "Square"},
+        { question: "Which looks like a ball?", image: "", options: ["Circle", "Square", "Oval"], answer: "Circle"},
+        { question: "Shape of a pyramid?", image: "", options: ["Triangle", "Oval", "Hexagon"], answer: "Triangle"},
+        { question: "Which has 4 sides?", image: "", options: ["Rectangle", "Oval", "Circle"], answer: "Rectangle"},
+        { question: "Which has no corners?", image: "", options: ["Circle", "Square", "Triangle"], answer: "Circle"},
+        
+    ],
 
     }
+     
