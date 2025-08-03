@@ -25,16 +25,16 @@ const quizzes = {
         
     ],
     Numbers: [
-        { question: "What comes after 4?", image: "", options: ["2", "5", "7"], answer: "5"},
-        { question: "What comes before 9?", image: "", options: ["9", "6", "8"], answer: "8"},
-        { question: "How many legs does a spider have?", image: "", options: ["8", "10", "12"], answer: "8"},
-        { question: "What is 2 + 2?", image: "", options: ["5", "3", "4"], answer: "4"},
-        { question: "What is 5 - 3?", image: "", options: ["3", "2", "5"], answer: "2"},
-        { question: "What comes after 9?", image: "", options: ["8", "4", "10"], answer: "10"},
-        { question: "Which number is smallest?", image: "", options: ["5", "1", "9"], answer: "1"},
-        { question: "How many fingers do you have?", image: "", options: ["10", "8", "11"], answer: "10"},
-        { question: "What is 5 + 5?", image: "", options: ["9", "5", "10"], answer: "10"},
-        { question: "What comes before 1?", image: "", options: ["2", "0", "11"], answer: "0"},
+        { question: "What comes after 4?", image: "assets/images/5.png", options: ["2", "5", "7"], answer: "5"},
+        { question: "What comes before 9?", image: "assets/images/8.png", options: ["9", "6", "8"], answer: "8"},
+        { question: "How many legs does a spider have?", image: "assets/images/8.png", options: ["8", "10", "12"], answer: "8"},
+        { question: "What is 2 + 2?", image: "assets/images/4.png", options: ["5", "3", "4"], answer: "4"},
+        { question: "What is 5 - 3?", image: "assets/images/2.png", options: ["3", "2", "5"], answer: "2"},
+        { question: "What comes after 9?", image: "assets/images/10.png", options: ["8", "4", "10"], answer: "10"},
+        { question: "Which number is smallest?", image: "assets/images/1.png", options: ["5", "1", "9"], answer: "1"},
+        { question: "How many fingers do you have?", image: "assets/images/10.png", options: ["10", "8", "11"], answer: "10"},
+        { question: "What is 3 + 3?", image: "assets/images/6.png", options: ["9", "5", "6"], answer: "6"},
+        { question: "What comes before 1?", image: "assets/images/0.png", options: ["2", "0", "11"], answer: "0"},
         
     ],
     Shapes: [
