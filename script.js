@@ -38,16 +38,16 @@ const quizzes = {
         
     ],
     Shapes: [
-        { question: "Which has 3 sides?", image: "", options: ["Triangle", "Circle", "Square"], answer: "Triangle"},
-        { question: "Which is round?", image: "", options: ["Rectangle", "Circle", "Hexagon"], answer: "Circle"},
-        { question: "Which has 4 equal sides?", image: "", options: ["Pentagon", "Square", "Triangle"], answer: "Square"},
-        { question: "Which has 6 sides?", image: "", options: ["Hexagon", "Octagon", "Diamond"], answer: "Hexagon"},
-        { question: "Stop sign shape?", image: "", options: ["Octagon", "Circle", "Rectangle"], answer: "Octagon"},
-        { question: "Which has corners?", image: "", options: ["Square", "Cube", "Pyramid"], answer: "Square"},
-        { question: "Which looks like a ball?", image: "", options: ["Circle", "Square", "Oval"], answer: "Circle"},
-        { question: "Shape of a pyramid?", image: "", options: ["Triangle", "Oval", "Hexagon"], answer: "Triangle"},
-        { question: "Which has 4 sides?", image: "", options: ["Rectangle", "Oval", "Circle"], answer: "Rectangle"},
-        { question: "Which has no corners?", image: "", options: ["Circle", "Square", "Triangle"], answer: "Circle"},
+        { question: "Which has 3 sides?", image: "assets/images/triangle.png", options: ["Triangle", "Circle", "Square"], answer: "Triangle"},
+        { question: "Which is round?", image: "assets/images/circle.png", options: ["Rectangle", "Circle", "Hexagon"], answer: "Circle"},
+        { question: "Which has 4 equal sides?", image: "assets/images/square.png", options: ["Pentagon", "Square", "Triangle"], answer: "Square"},
+        { question: "Which has 6 sides?", image: "assets/images/hexagon.png", options: ["Hexagon", "Octagon", "Diamond"], answer: "Hexagon"},
+        { question: "Stop sign shape?", image: "assets/images/octagon.png", options: ["Octagon", "Circle", "Rectangle"], answer: "Octagon"},
+        { question: "Which has corners?", image: "assets/images/square.png", options: ["Square", "Cube", "Pyramid"], answer: "Square"},
+        { question: "Which looks like a ball?", image: "assets/images/circle.png", options: ["Circle", "Square", "Oval"], answer: "Circle"},
+        { question: "Shape of a pyramid?", image: "assets/images/triangle.png", options: ["Triangle", "Oval", "Hexagon"], answer: "Triangle"},
+        { question: "Which has 4 sides?", image: "assets/images/rectangle.png", options: ["Rectangle", "Oval", "Circle"], answer: "Rectangle"},
+        { question: "Which has no corners?", image: "assets/images/circle.png", options: ["Circle", "Square", "Triangle"], answer: "Circle"},
         
     ],
 
