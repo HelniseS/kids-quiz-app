@@ -53,3 +53,9 @@ const quizzes = {
 
     };
      
+    let quisData = [], currentQuestion = 0, score = 0;
+    const correctSound = new Audio('assets/sounds/correct.mp3');
+    const wrongSound = new Audio('assets/sounds/wrong.mp3');
+    
+    
+    
