@@ -56,6 +56,15 @@ const quizzes = {
     let quisData = [], currentQuestion = 0, score = 0;
     const correctSound = new Audio('assets/sounds/correct.mp3');
     const wrongSound = new Audio('assets/sounds/wrong.mp3');
-    
+
+    function startQuiz(topic) {
+        quizData = quizzes[topic];
+        currentQuestion =score = 0;
+        document.getElementById("topic-select").classList.add("hide");
+        document.getElementById("quiz-box").classList.remove("hide");
+        document.getElementById("result").classList.add("hide");
+        loadQuestion();
+    }
+
     
     
