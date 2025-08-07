@@ -65,6 +65,33 @@ const quizzes = {
         document.getElementById("result").classList.add("hide");
         loadQuestion();
     }
+     
+    function loadQuestion() {
+        const quiz = quizData[currentQuestion];
+        const questionEl = document.getElementById("question");
+        const imageEl = document.getElementById("question-img");
+        const optionsEl = document.getElementById("options");
+
+        questionEl.textContent = quiz.question;
+        imageEl.innerHTML = `<img src="${quiz.image}" alt="${quiz.question}" />`;
+        optionsEl.innerHTML = "";
+
+        document.getElementById("feedback"). textContent = "";
+        document.getElementById("next-btn").classList.add(hide);
+
+        const utter = new SpeechSynthesisUtterance(quiz.question);
+        utter.lang = "en-US";
+        window.SpeechSynthesis.speak(utter);
+
+        quiz.options.forEach(opt => {
+            const btn =document.createElement("button");
+            btn.textContent = opt;
+            btn.onclick = () => checkAnswer(btn, opt === quiz.answer);
+            optionsEl.appendChild(btn);
+        });
+    }
+    
+
 
     
     
