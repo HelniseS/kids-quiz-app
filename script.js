@@ -115,7 +115,15 @@ const quizzes = {
             if (b.textContent=== correct) b.classList.add("correct");
         });
     }
-    
+
+     document.getElementById("next-btn").onclick = () => {
+        currentQuestion++;
+        if (currentQuestion < quizData.length) {
+            loadQuestion();
+        } else {
+            showResult();
+        }
+     };
 
 
     
