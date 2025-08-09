@@ -44,3 +44,13 @@ button {
 button:hover {
     background-color: #ffb6c1;
 }
+
+.correct {
+    background-color: #4caf5a;
+    color: white;
+}
+
+.wrong {
+    background-color: #f44336;
+    color: white;
+}
