@@ -89,9 +89,33 @@ const quizzes = {
             btn.onclick = () => checkAnswer(btn, opt === quiz.answer);
             optionsEl.appendChild(btn);
         });
+
+        function checkAnswer(button, isCorrect) {
+            window.speechSynthesis.cancel();
+        document.querySelectorAll("#options button").forEach(b => b.disabled = true);
+
+        if (isCorrect) {
+            button.classList.add("correct");
+            document.getElementById("feedback").textContent = "Great job!";
+            correctSound.play();
+            score++;
+        }else {
+            button.classList.add("wrong");
+            document.getElementById("feedback").textContent = "Oops! Try again!";
+            wrongSound.play();
+            highlightCorrect();
+        }
+            document.getElementById("next-btn").classList.remove("hide");
+
+    }
+
+    function highlightCorrect(){
+        const correct = quizData[currentQuestion].answer;
+        document.querySelectorAll("#options button").forEach(b => {
+            if (b.textContent=== correct) b.classList.add("correct");
+        });
     }
     
 
 
-    
     
