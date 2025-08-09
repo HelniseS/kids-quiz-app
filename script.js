@@ -124,6 +124,38 @@ const quizzes = {
             showResult();
         }
      };
+     
+     function showResult() {
+        document.getElementById("quiz-box").classList.add("hide");
+        document.getElementById("result").classList.remove("hide");
+        document.getElementById("score").textContent = score;
+        document.getElementById("quiz-box").textContent = quisData.length;
 
+        const perccent = (score / quizData.length) * 100;
+        if (percent >= 80 ) {
+            confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 } });
+        }
+        showStars(percent);
+    }
+        
+    function showStars(percent) {
+        const starsEl = document.getElementById("stars");
+        starsEl.innerHTML = "";
+        let starCount = 0;
+
+        
+       if ( percent ===100) starCount = 3;
+        else if (percent >= 80) starCount = 2;
+        else if (percent >= 50) starCount = 1;
+
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement("span");
+            star.classList.add("star");
+            star.innerHTML = "&#9733;";
+            starsEl.appendChild(star);
+        }
+    }
+
+} 
 
     
