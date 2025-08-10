@@ -66,6 +66,7 @@ const quizzes = {
     function startQuiz(topic) {
         quizData = quizzes[topic];
         currentQuestion =score = 0;
+        score = 0;
 
         document.getElementById("topic-select").classList.add("hide");
         document.getElementById("quiz-box").classList.remove("hide");
@@ -88,7 +89,7 @@ const quizzes = {
         document.getElementById("feedback"). textContent = "";
         nextBtn.classList.add("hide");
 
-        const utter = new speechSynthesisUtterance(quiz.question);
+        const utter = new SpeechSynthesisUtterance(quiz.question);
         utter.lang = "en-US";
         window.speechSynthesis.cancel();
         window.speechSynthesis.speak(utter);
@@ -100,7 +101,7 @@ const quizzes = {
         optionsEl.appendChild(btn)
         });
         
-
+    }
         function checkAnswer(button, isCorrect) {
             window.speechSynthesis.cancel();
         document.querySelectorAll("#options button").forEach(b => b.disabled = true);
@@ -123,7 +124,7 @@ const quizzes = {
     function highlightCorrect(){
         const correct = quizData[currentQuestion].answer;
         document.querySelectorAll("#options button").forEach(b => {
-            if (b.textContent=== correct) b.classList.add("correct");
+            if (b.textContent === correct) b.classList.add("correct");
         });
     }
 
@@ -164,9 +165,9 @@ const quizzes = {
             star.innerHTML = "&#9733;";
             starsEl.appendChild(star);
         }
-        if (starCount === 0) starsEl.textContent = "No stars thid time. Keep Trying!";
+        if (starCount === 0) starsEl.textContent = "No stars this time. Keep trying!";
     }
 
-    } 
+     
 
     
