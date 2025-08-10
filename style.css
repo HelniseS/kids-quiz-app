@@ -13,6 +13,14 @@ body{
 .hide {
     display: none;
 }
+
+#question-img img {
+    max-width: 220px;
+    height: auto;
+    display: block;
+    margin: 8px auto 16px;
+    border-radius: 10px;
+}
 /*Styling for the topic selection screen */
 
 #topic-select, #quiz-box, #result {
@@ -58,6 +66,9 @@ button:hover {
 #feedback {
     font-size:  1.05em;
     margin: 10px 0;
+    margin-top: 8px;
+    font-weight: 600;
+
 }
 
 #next-btn {
@@ -67,7 +78,7 @@ button:hover {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    margin-top: 15px;
+    margin-top: 14px;
     font-size: 1.1em;
 }
 #next-btn:hover {
