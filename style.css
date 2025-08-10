@@ -73,3 +73,12 @@ button:hover {
 #next-btn:hover {
     background-color: #1976d2;
 }
+
+#result {
+    background: white;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
