@@ -52,17 +52,25 @@ const quizzes = {
     ],
 
     };
+
+    let quizData = [];
+    let currentQuestion = 0;
+    let score = 0;
      
-    let quizData = [], currentQuestion = 0, score = 0;
+    
     const correctSound = new Audio('assets/sounds/correct.mp3');
     const wrongSound = new Audio('assets/sounds/wrong.mp3');
+    correctSound.preload = "auto";
+    wrongSound.preload = "auto";
 
     function startQuiz(topic) {
         quizData = quizzes[topic];
         currentQuestion =score = 0;
+
         document.getElementById("topic-select").classList.add("hide");
         document.getElementById("quiz-box").classList.remove("hide");
         document.getElementById("result").classList.add("hide");
+
         loadQuestion();
     }
      
@@ -75,10 +83,15 @@ const quizzes = {
 
         questionEl.textContent = quiz.question;
         imageEl.innerHTML = `<img src="${quiz.image}" alt="${quiz.question}">`;
-        
+    
         optionsEl.innerHTML = "";
         document.getElementById("feedback"). textContent = "";
         nextBtn.classList.add("hide");
+
+        const utter = new speechSynthesisUtterance(quiz.question);
+        utter.lang = "en-US";
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(utter);
 
         quiz.options.forEach(opt => {
         const btn = document.createElement("button");
@@ -87,11 +100,6 @@ const quizzes = {
         optionsEl.appendChild(btn)
         });
         
-
-        const utter = new speechSynthesisUtterance(quiz.question);
-        utter.lang = "en-US";
-        window.speechSynthesis.speak(utter);
-
 
         function checkAnswer(button, isCorrect) {
             window.speechSynthesis.cancel();
@@ -119,14 +127,14 @@ const quizzes = {
         });
     }
 
-     document.getElementById("next-btn").onclick = () => {
+     document.getElementById("next-btn") .addEventListener("click",  () => {
         currentQuestion++;
         if (currentQuestion < quizData.length) {
             loadQuestion();
         } else {
             showResult();
         }
-     };
+     });
      
      function showResult() {
         document.getElementById("quiz-box").classList.add("hide");
@@ -135,7 +143,7 @@ const quizzes = {
         document.getElementById("total").textContent = quizData.length;
 
         const percent = (score / quizData.length) * 100;
-        if (percent >= 80 ) {
+        if (percent >= 80 && typeof confetti === "function") {
             confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 } });
         }
         showStars(percent);
@@ -144,9 +152,8 @@ const quizzes = {
     function showStars(percent) {
         const starsEl = document.getElementById("stars");
         starsEl.innerHTML = "";
-        let starCount = 0;
 
-        
+        let starCount = 0;
        if ( percent ===100) starCount = 3;
         else if (percent >= 80) starCount = 2;
         else if (percent >= 50) starCount = 1;
@@ -157,8 +164,9 @@ const quizzes = {
             star.innerHTML = "&#9733;";
             starsEl.appendChild(star);
         }
+        if (starCount === 0) starsEl.textContent = "No stars thid time. Keep Trying!";
     }
 
-} 
+    } 
 
     
