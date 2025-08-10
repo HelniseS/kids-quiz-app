@@ -1,6 +1,6 @@
 const quizzes = {
     Animals: [
-        { question: "Which animal says 'moo'?", image: "assets\images\cow.png", options: ["Cow", "Cat", "Sheep"], answer: "Cow"},
+        { question: "Which animal says 'moo'?", image: "assets/images/cow.png", options: ["Cow", "Cat", "Sheep"], answer: "Cow"},
         { question: "Which animal barks?", image: "assets/images/dog.png", options: ["Fish", "Dog", "Pig"], answer: "Dog"},
         { question: "Who is the king of the jumgle?", image: "assets/images/lion.png", options: ["Tiger", "Bear", "Lion"], answer: "Lion"},
         { question: "Which animal lives in water?", image:"assets/images/fish.png", options: ["Frog", "Fish", "Bird"], answer: "Fish"},
@@ -53,7 +53,7 @@ const quizzes = {
 
     };
      
-    let quisData = [], currentQuestion = 0, score = 0;
+    let quizData = [], currentQuestion = 0, score = 0;
     const correctSound = new Audio('assets/sounds/correct.mp3');
     const wrongSound = new Audio('assets/sounds/wrong.mp3');
 
@@ -71,24 +71,27 @@ const quizzes = {
         const questionEl = document.getElementById("question");
         const imageEl = document.getElementById("question-img");
         const optionsEl = document.getElementById("options");
+        const nextBtn = document.getElementById("next-btn")
 
         questionEl.textContent = quiz.question;
-        imageEl.innerHTML = `<img src="${quiz.image}" alt="${quiz.question}" />`;
+        imageEl.innerHTML = `<img src="${quiz.image}" alt="${quiz.question}">`;
+        
         optionsEl.innerHTML = "";
-
         document.getElementById("feedback"). textContent = "";
-        document.getElementById("next-btn").classList.add(hide);
-
-        const utter = new SpeechSynthesisUtterance(quiz.question);
-        utter.lang = "en-US";
-        window.SpeechSynthesis.speak(utter);
+        nextBtn.classList.add("hide");
 
         quiz.options.forEach(opt => {
-            const btn =document.createElement("button");
-            btn.textContent = opt;
-            btn.onclick = () => checkAnswer(btn, opt === quiz.answer);
-            optionsEl.appendChild(btn);
+        const btn = document.createElement("button");
+        btn .textContent = opt;
+        btn.addEventListener("click", () => checkAnswer(btn, opt === quiz .answer));
+        optionsEl.appendChild(btn)
         });
+        
+
+        const utter = new speechSynthesisUtterance(quiz.question);
+        utter.lang = "en-US";
+        window.speechSynthesis.speak(utter);
+
 
         function checkAnswer(button, isCorrect) {
             window.speechSynthesis.cancel();
@@ -129,9 +132,9 @@ const quizzes = {
         document.getElementById("quiz-box").classList.add("hide");
         document.getElementById("result").classList.remove("hide");
         document.getElementById("score").textContent = score;
-        document.getElementById("quiz-box").textContent = quisData.length;
+        document.getElementById("total").textContent = quizData.length;
 
-        const perccent = (score / quizData.length) * 100;
+        const percent = (score / quizData.length) * 100;
         if (percent >= 80 ) {
             confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 } });
         }

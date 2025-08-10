@@ -6,15 +6,16 @@
     <title>Hellen's Quiz App</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
+    <script defer src="script.js"></script>
+   
 </head>
 <body>
     <div id="topic-select">
    <h1>Welcome to Hellen's Quiz App!</h1>
-   <button onclick="startquiz('Animals')">Animals</button>
-   <button onclick="startquiz('Colors')">Colors</button>
-   <button onclick="startquiz('Numbers')">Numbers</button>
-   <button onclick="startquiz('Shapes')">Shapes</button>
+   <button onclick="startQuiz('Animals')">Animals</button>
+   <button onclick="startQuiz('Colors')">Colors</button>
+   <button onclick="startQuiz('Numbers')">Numbers</button>
+   <button onclick="startQuiz('Shapes')">Shapes</button>
    </div> 
 
    <div id="quiz-box" class="hide">
@@ -22,7 +23,7 @@
     <div id="question-img"></div>
     <div id="options"></div>
     <p id="feedback"></p>
-    <button id="next-btn" class="hide"></button>
+    <button id="next-btn" class="hide">Next</button>
    </div>
  
    <div id="result" class="hide">
@@ -30,7 +31,7 @@
     <div id="stars"></div>
     <button onclick="location.reload()">Play Again</button>
 </div>
-<script src="script.js"></script>
+
 </body>
 
 </html>
