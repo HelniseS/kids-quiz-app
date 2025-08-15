@@ -11,7 +11,23 @@ const scoreEl      = document.getElementById("score");
 const totalEl      = document.getElementById("total");
 const starsEl      = document.getElementById("stars");
 const playAgainBtn = document.getElementById("play-again");
+const voiceToggle = document.createElement("button");
 
+voiceToggle.id = "voice-toggle";
+quizBox.insertBefore(voiceToggle, quizBox.firstChild);
+
+let voiceOn = localStorage.getItem("voiceOn") !=="false";
+function updateVoiceToggleUI() {
+    voiceToggle.textContent = voiceOn ? "Voice On" : "Voice Off";
+
+}
+updateVoiceToggleUI();
+voiceToggle.addEventListener("click", () => {
+    voiceOn = !voiceOn;
+    localStorage.setItem("voiceOn", String(voiceOn));
+    updateVoiceToggleUI();
+    if (!voiceOn) window.speechSynthesis.cancel();
+})
 // ---------- Questions ----------
 const quizzes = {
   Animals: [
