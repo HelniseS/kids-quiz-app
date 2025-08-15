@@ -1,3 +1,17 @@
+const topicSelect = document.getElementById("topic-select");
+const quizBox = document.getElementById("quiz-box");
+const resultBox = document.getElementById("result");
+const questionEl = document.getElementById("question");
+const imageEl = document.getElementById("question-img");
+const optionsEl = document.getElementById("options");
+const feedbackEl = document.getElementById("feedback");
+const nextBtn= document.getElementById("next-btn");
+const scoreEl = document.getElementById("score");
+const totalEl = document.getElementById("total");
+const starsEl = document.getElementById("stars");
+const playAgainBtn = document.getElementById("play-again");
+
+
 const quizzes = {
     Animals: [
         { question: "Which animal says 'moo'?", image: "assets/images/cow.png", options: ["Cow", "Cat", "Sheep"], answer: "Cow"},
@@ -60,33 +74,27 @@ const quizzes = {
     
     const correctSound = new Audio('assets/sounds/correct.mp3');
     const wrongSound = new Audio('assets/sounds/wrong.mp3');
-    correctSound.preload = "auto";
-    wrongSound.preload = "auto";
+    
 
     function startQuiz(topic) {
         quizData = quizzes[topic];
         currentQuestion =score = 0;
         score = 0;
 
-        document.getElementById("topic-select").classList.add("hide");
-        document.getElementById("quiz-box").classList.remove("hide");
-        document.getElementById("result").classList.add("hide");
+        topicSelect.classList.add("hide");
+        quizBox.classList.remove("hide");
+        result.classList.add("hide");
 
         loadQuestion();
     }
      
     function loadQuestion() {
         const quiz = quizData[currentQuestion];
-        const questionEl = document.getElementById("question");
-        const imageEl = document.getElementById("question-img");
-        const optionsEl = document.getElementById("options");
-        const nextBtn = document.getElementById("next-btn")
-
         questionEl.textContent = quiz.question;
         imageEl.innerHTML = `<img src="${quiz.image}" alt="${quiz.question}">`;
     
         optionsEl.innerHTML = "";
-        document.getElementById("feedback"). textContent = "";
+        feedbackEl.textContent = "";
         nextBtn.classList.add("hide");
 
         const utter = new SpeechSynthesisUtterance(quiz.question);
@@ -104,20 +112,20 @@ const quizzes = {
     }
         function checkAnswer(button, isCorrect) {
             window.speechSynthesis.cancel();
-        document.querySelectorAll("#options button").forEach(b => b.disabled = true);
+        optionsEl.querySelectorAll("button").forEach(b => b.disabled = true);
 
         if (isCorrect) {
             button.classList.add("correct");
-            document.getElementById("feedback").textContent = "Great job!";
+            feedbackEl.textContent = "Great job!";
             correctSound.play();
             score++;
         }else {
             button.classList.add("wrong");
-            document.getElementById("feedback").textContent = "Oops! Try again!";
+            feedbackEl.textContent = "Oops! Try again!";
             wrongSound.play();
             highlightCorrect();
         }
-            document.getElementById("next-btn").classList.remove("hide");
+        nextBtn.classList.remove("hide");
 
     }
 
@@ -128,7 +136,7 @@ const quizzes = {
         });
     }
 
-     document.getElementById("next-btn") .addEventListener("click",  () => {
+     nextBtn.addEventListener("click",  () => {
         currentQuestion++;
         if (currentQuestion < quizData.length) {
             loadQuestion();
@@ -138,22 +146,17 @@ const quizzes = {
      });
      
      function showResult() {
-        document.getElementById("quiz-box").classList.add("hide");
-        document.getElementById("result").classList.remove("hide");
-        document.getElementById("score").textContent = score;
-        document.getElementById("total").textContent = quizData.length;
-
-        const percent = (score / quizData.length) * 100;
-        if (percent >= 80 && typeof confetti === "function") {
-            confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 } });
-        }
-        showStars(percent);
-    }
+        quizBox.classList.add("hide");
+        resultBox.classList.remove("hide");
+        scoreEl.textContent = score;
+        totalEl.textContent = quizData.length;
+        showStars((score / quizData.length) * 100);
+     }
+        
         
     function showStars(percent) {
         const starsEl = document.getElementById("stars");
         starsEl.innerHTML = "";
-
         let starCount = 0;
        if ( percent ===100) starCount = 3;
         else if (percent >= 80) starCount = 2;
@@ -161,12 +164,17 @@ const quizzes = {
 
         for (let i = 0; i < starCount; i++) {
             const star = document.createElement("span");
-            star.classList.add("star");
             star.innerHTML = "&#9733;";
             starsEl.appendChild(star);
         }
-        if (starCount === 0) starsEl.textContent = "No stars this time. Keep trying!";
     }
+
+    document.querySelectorAll(".topic-btn").forEach(btn => {
+        btn.addEventListener("click", () => startQuiz(btn.dataset.topic));
+    });
+    playAgainBtn.addEventListener("click", () => location.reload());
+        if (starCount === 0) starsEl.textContent = "No stars this time. Keep trying!";
+    
 
      
 
