@@ -52,7 +52,15 @@ button {
 button:hover {
     background-color: #ffb6c1;
 }
-
+#voice-toggle {
+    background: #ffb74d;
+    color: black;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+#voice-toggle:hover {
+    background: #ffa726;
+}
 .correct {
     background-color: #4caf5a;
     color: white;
