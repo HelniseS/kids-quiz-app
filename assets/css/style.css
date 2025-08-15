@@ -53,13 +53,18 @@ button:hover {
     background-color: #ffb6c1;
 }
 #voice-toggle {
-    background: #ffb74d;
-    color: black;
-    font-weight: bold;
-    margin-bottom: 10px;
+    background: transparent;
+    color: #333;
+    top: 15px;
+    right: 15px;
+    position: fixed;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 1000;
 }
 #voice-toggle:hover {
-    background: #ffa726;
+    color: #000;
 }
 .correct {
     background-color: #4caf5a;
