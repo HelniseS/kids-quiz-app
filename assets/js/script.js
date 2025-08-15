@@ -11,24 +11,66 @@ const scoreEl      = document.getElementById("score");
 const totalEl      = document.getElementById("total");
 const starsEl      = document.getElementById("stars");
 const playAgainBtn = document.getElementById("play-again");
+/* ========= Voice toggle ========= */
 const voiceToggle = document.createElement("button");
-
 voiceToggle.id = "voice-toggle";
+voiceToggle.innerHTML = `<i class="fas fa-volume-up"></i>`;
 quizBox.insertBefore(voiceToggle, quizBox.firstChild);
 
-let voiceOn = localStorage.getItem("voiceOn") !=="false";
-function updateVoiceToggleUI() {
-    voiceToggle.textContent = voiceOn ? "Voice On" : "Voice Off";
-    
+// persist setting
+let voiceOn = localStorage.getItem("voiceOn") !== "false";
+updateVoiceIcon();
 
-}
-updateVoiceToggleUI();
-voiceToggle.addEventListener("click", () => {
+
+  voiceToggle.addEventListener("click", () => {
     voiceOn = !voiceOn;
     localStorage.setItem("voiceOn", String(voiceOn));
-    updateVoiceToggleUI();
-    if (!voiceOn) window.speechSynthesis.cancel();
-})
+    updateVoiceIcon();
+    if (voiceOn) {
+        window.speechSynthesis.cancel();
+    }
+});
+
+  
+
+function updateVoiceIcon() {
+    if (voiceOn) {
+       voiceToggle.innerHTML = `<i class="fas fa-volume-up"></i>`;
+    } else {
+        voiceToggle.innerHTML = `<i class="fas fa-volume-mute"></i>`;
+    } 
+}
+
+function speak(text) {
+    if (!voiceOn) return;
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = "en-US";
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utter);
+}
+
+/* Centralized speech helpers */
+let currentUtterance = null;
+function stopSpeaking(){
+  window.speechSynthesis.cancel();
+  currentUtterance = null;
+}
+function speak(text){
+  stopSpeaking();                // prevent queues
+  if (!voiceOn) return;
+  currentUtterance = new SpeechSynthesisUtterance(text);
+  currentUtterance.lang = "en-US";
+  window.speechSynthesis.speak(currentUtterance);
+}
+voiceToggle.addEventListener("click", () => {
+  voiceOn = !voiceOn;
+  localStorage.setItem("voiceOn", String(voiceOn));
+  updateVoiceToggleUI();
+  if (!voiceOn) stopSpeaking();
+});
+
+
+
 // ---------- Questions ----------
 const quizzes = {
   Animals: [
@@ -49,7 +91,7 @@ const quizzes = {
     { question: "What color is a banana?", image: "assets/images/banana.png", options: ["Black", "White", "Yellow"], answer: "Yellow"},
     { question: "What color is an apple?", image:"assets/images/apple.png", options: ["Purple", "Red", "Grey"], answer: "Red"},
     { question: "What color is a lemon?", image: "assets/images/lemon.png", options: ["Yellow", "Purple", "Cream"], answer: "Yellow"},
-    { question: "What color are strawberries?", image: "assets/images/strawberry.png", options: ["Red", "White", "Pink"], answer: "Red"},
+    { question: "What color are strawberries?", image: "assets/images/strawberrry.png", options: ["Red", "White", "Pink"], answer: "Red"},
     { question: "What color is chocolate?", image: "assets/images/chocolate.png", options: ["Black", "Blue", "Brown"], answer: "Brown"},
     { question: "What color is the sun?", image: "assets/images/sun.png", options: ["Orange", "Yellow", "Purple"], answer: "Yellow"},
     { question: "Which is a warm color?", image: "assets/images/red.png", options: ["Red", "Blue", "Black"], answer: "Red"},
@@ -58,7 +100,7 @@ const quizzes = {
   Numbers: [
     { question: "What comes after 4?", image: "assets/images/5.png", options: ["2", "5", "7"], answer: "5"},
     { question: "What comes before 9?", image: "assets/images/8.png", options: ["9", "6", "8"], answer: "8"},
-    { question: "How many legs does a spider have?", image: "assets/images/spider.png", options: ["8", "10", "12"], answer: "8"},
+    { question: "How many legs does a spider have?", image: "assets/images/8.png", options: ["8", "10", "12"], answer: "8"},
     { question: "What is 2 + 2?", image: "assets/images/4.png", options: ["5", "3", "4"], answer: "4"},
     { question: "What is 5 - 3?", image: "assets/images/2.png", options: ["3", "2", "5"], answer: "2"},
     { question: "What comes after 9?", image: "assets/images/10.png", options: ["8", "4", "10"], answer: "10"},
@@ -101,6 +143,7 @@ function startQuiz(topic) {
     quizBox.classList.remove("hide");
     resultBox.classList.add("hide");
 
+    
     loadQuestion();
 }
 
@@ -113,7 +156,9 @@ function loadQuestion() {
     feedbackEl.textContent = "";
     nextBtn.classList.add("hide");
 
-    if (!voiceOn) {
+    speak(quiz.question);
+
+    if (voiceOn) {
     const utter = new SpeechSynthesisUtterance(quiz.question);
     utter.lang = "en-US";
     window.speechSynthesis.cancel();
@@ -167,10 +212,12 @@ nextBtn.addEventListener("click", () => {
 });
 
 function showResult() {
+    stopSpeaking();
     quizBox.classList.add("hide");
     resultBox.classList.remove("hide");
     scoreEl.textContent = score;
     totalEl.textContent = quizData.length;
+
     showStars((score / quizData.length) * 100);
     if (percent >= 80 && typeof confetti === "function") {
     confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 } });
@@ -180,24 +227,17 @@ function showResult() {
 
 function showStars(percent) {
     starsEl.innerHTML = "";
-    let starCount = 0;
-    if (percent === 100) starCount = 3;
-    else if (percent >= 80) starCount = 2;
-    else if (percent >= 50) starCount = 1;
+    const star = percent === 100 ? 3 : percent >= 80 ? 2 : percent >= 50 ? 1 : 0;
 
-    for (let i = 0; i < starCount; i++) {
-        const star = document.createElement("span");
-        star.innerHTML = "&#9733;";
+   
+        starEl.innerHTML = stars ? "&#9733;".repeat(stars) : "No stars this time. Keep Trying!";
         starsEl.appendChild(star);
     }
-}
+
 
 playAgainBtn.addEventListener("click", () => location.reload());
 
 document.querySelectorAll(".topic-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-        console.log("Topic clicked:", btn.dataset.topic);
-        startQuiz(btn.dataset.topic);
+    btn.addEventListener("click", () => startQuiz(btn.dataset.topic));
     });
     
-});
