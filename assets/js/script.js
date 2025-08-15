@@ -19,6 +19,7 @@ quizBox.insertBefore(voiceToggle, quizBox.firstChild);
 let voiceOn = localStorage.getItem("voiceOn") !=="false";
 function updateVoiceToggleUI() {
     voiceToggle.textContent = voiceOn ? "Voice On" : "Voice Off";
+    
 
 }
 updateVoiceToggleUI();
@@ -112,10 +113,15 @@ function loadQuestion() {
     feedbackEl.textContent = "";
     nextBtn.classList.add("hide");
 
+    if (!voiceOn) {
     const utter = new SpeechSynthesisUtterance(quiz.question);
     utter.lang = "en-US";
     window.speechSynthesis.cancel();
     window.speechSynthesis.speak(utter);
+} else {
+    window.speechSynthesis.cancel();
+
+}
 
     quiz.options.forEach(opt => {
         const btn = document.createElement("button");
