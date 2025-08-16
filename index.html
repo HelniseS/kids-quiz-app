@@ -30,10 +30,10 @@
 <body>
     <div id="topic-select">
    <h1>Welcome to Hellen's Quiz App!</h1>
-   <button class="topic-btn" data-topic="Animals">Animals</button>
-   <button class="topic-btn" data-topic="Colors">Colors</button>
-   <button class="topic-btn" data-topic="Numbers">Numbers</button>
-   <button class="topic-btn" data-topic="Shapes">Shapes</button>
+   <button class="topic-btn" data-topic="Animals" aria-label="Start Animals Quiz">Animals</button>
+   <button class="topic-btn" data-topic="Colors" aria-label="Start Colors Quiz">Colors</button>
+   <button class="topic-btn" data-topic="Numbers" aria-label="Start Numbers Quiz">Numbers</button>
+   <button class="topic-btn" data-topic="Shapes" aria-label="Start Shapes Quiz">Shapes</button>
    </div> 
 
    <div id="quiz-box" class="hide">
@@ -41,13 +41,13 @@
     <div id="question-img"></div>
     <div id="options"></div>
     <p id="feedback"></p>
-    <button id="next-btn" class="hide">Next</button>
+    <button id="next-btn" class="hide" aria-label="Go to next question">Next</button>
    </div>
  
    <div id="result" class="hide">
     <h2>You got <span id="score"></span>out of <span id="total"></span>correct!</h2>
     <div id="stars"></div>
-    <button id="play-again">Play Again</button>
+    <button id="play-again" aria-label="Play the quiz again">Play Again</button>
 
     <noscript>
     <p style="padding:1rem; text-align:center;">
