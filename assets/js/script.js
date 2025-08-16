@@ -1,3 +1,5 @@
+
+
 // ---------- Element refs ----------
 const topicSelect  = document.getElementById("topic-select");
 const quizBox      = document.getElementById("quiz-box");
@@ -15,59 +17,46 @@ const playAgainBtn = document.getElementById("play-again");
 const voiceToggle = document.createElement("button");
 voiceToggle.id = "voice-toggle";
 voiceToggle.innerHTML = `<i class="fas fa-volume-up"></i>`;
-quizBox.insertBefore(voiceToggle, quizBox.firstChild);
+document.body.appendChild(voiceToggle);
 
 // persist setting
-let voiceOn = localStorage.getItem("voiceOn") !== "false";
-updateVoiceIcon();
+let voiceOn = localStorage.getItem("voiceOn"); 
+voiceOn = voiceOn === null ? true : voiceOn !== "false";
+
+function updateVoiceIcon() {
+       voiceToggle.innerHTML = voiceOn 
+       ? '<i class="fas fa-volume-up"></i>'
+     : '<i class="fas fa-volume-mute"></i>';
+    } 
+
+     updateVoiceIcon();
 
 
   voiceToggle.addEventListener("click", () => {
     voiceOn = !voiceOn;
     localStorage.setItem("voiceOn", String(voiceOn));
     updateVoiceIcon();
-    if (voiceOn) {
-        window.speechSynthesis.cancel();
-    }
+    if (!voiceOn) stopSpeaking();
+    
 });
-
-  
-
-function updateVoiceIcon() {
-    if (voiceOn) {
-       voiceToggle.innerHTML = `<i class="fas fa-volume-up"></i>`;
-    } else {
-        voiceToggle.innerHTML = `<i class="fas fa-volume-mute"></i>`;
-    } 
-}
-
-function speak(text) {
-    if (!voiceOn) return;
-    const utter = new SpeechSynthesisUtterance(text);
-    utter.lang = "en-US";
-    window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(utter);
-}
-
 /* Centralized speech helpers */
 let currentUtterance = null;
+
 function stopSpeaking(){
   window.speechSynthesis.cancel();
   currentUtterance = null;
 }
-function speak(text){
-  stopSpeaking();                // prevent queues
-  if (!voiceOn) return;
-  currentUtterance = new SpeechSynthesisUtterance(text);
-  currentUtterance.lang = "en-US";
-  window.speechSynthesis.speak(currentUtterance);
+
+function say(text) {
+    if (!voiceOn) return;
+    stopSpeaking();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = "en-US";
+    currentUtterance = utter;
+    window.speechSynthesis.speak(utter);
 }
-voiceToggle.addEventListener("click", () => {
-  voiceOn = !voiceOn;
-  localStorage.setItem("voiceOn", String(voiceOn));
-  updateVoiceToggleUI();
-  if (!voiceOn) stopSpeaking();
-});
+
+
 
 
 
@@ -156,17 +145,9 @@ function loadQuestion() {
     feedbackEl.textContent = "";
     nextBtn.classList.add("hide");
 
-    speak(quiz.question);
+    say(quiz.question);
 
-    if (voiceOn) {
-    const utter = new SpeechSynthesisUtterance(quiz.question);
-    utter.lang = "en-US";
-    window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(utter);
-} else {
-    window.speechSynthesis.cancel();
-
-}
+    
 
     quiz.options.forEach(opt => {
         const btn = document.createElement("button");
@@ -177,7 +158,7 @@ function loadQuestion() {
 }
 
 function checkAnswer(button, isCorrect) {
-    window.speechSynthesis.cancel();
+   stopSpeaking();
     optionsEl.querySelectorAll("button").forEach(b => b.disabled = true); // only option buttons
 
     if (isCorrect) {
@@ -218,7 +199,8 @@ function showResult() {
     scoreEl.textContent = score;
     totalEl.textContent = quizData.length;
 
-    showStars((score / quizData.length) * 100);
+    const percent = (score / quizData.length) * 100;
+
     if (percent >= 80 && typeof confetti === "function") {
     confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 } });
   }
@@ -227,11 +209,9 @@ function showResult() {
 
 function showStars(percent) {
     starsEl.innerHTML = "";
-    const star = percent === 100 ? 3 : percent >= 80 ? 2 : percent >= 50 ? 1 : 0;
-
-   
-        starEl.innerHTML = stars ? "&#9733;".repeat(stars) : "No stars this time. Keep Trying!";
-        starsEl.appendChild(star);
+    const stars = percent === 100 ? 3 : percent >= 80 ? 2 : percent >= 50 ? 1 : 0;
+    starsEl.innerHTML = stars ? "&#9733;".repeat(stars) : "No stars this time. Keep Trying!";
+        
     }
 
 
