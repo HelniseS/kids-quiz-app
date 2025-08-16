@@ -16,6 +16,7 @@ const playAgainBtn = document.getElementById("play-again");
 /* ========= Voice toggle ========= */
 const voiceToggle = document.createElement("button");
 voiceToggle.id = "voice-toggle";
+voiceToggle.setAttribute("aria-label", "Toggle sound");
 voiceToggle.innerHTML = `<i class="fas fa-volume-up"></i>`;
 document.body.appendChild(voiceToggle);
 
