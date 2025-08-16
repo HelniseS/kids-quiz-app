@@ -121,3 +121,16 @@ button:hover {
     100% { transform: scale(1); }
     }
     
+#no-js-banner {
+    display: none;
+    padding: 1rem;
+    text-align: center;
+    background: #fff3cd;
+    border: 1px solid #ffe69c;
+    border-radius: 5rem;
+    font-weight: bold;
+}
+
+.no-js #no-js-banner {
+    display: block;
+}
