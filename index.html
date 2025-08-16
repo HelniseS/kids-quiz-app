@@ -4,12 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hellen's Quiz App</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Preconnect to CDNs (faster TLS/DNS) -->
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <script defer src="assets/js/script.js"></script>
-   
+<!-- Load Font Awesome without blocking render -->
+<link rel="preload"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</noscript>
+
+<!-- Your CSS (keep it, but consider splitting) -->
+<link rel="stylesheet" href="assets/css/style.css">
+
+<!-- Non-critical JS should be deferred -->
+<script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script defer src="assets/js/script.js"></script>
+
 </head>
 <body>
     <div id="topic-select">
@@ -32,6 +48,12 @@
     <h2>You got <span id="score"></span>out of <span id="total"></span>correct!</h2>
     <div id="stars"></div>
     <button id="play-again">Play Again</button>
+
+    <noscript>
+    <p style="padding:1rem; text-align:center;">
+      This quiz needs JavaScript enabled to work. Please enable JavaScript and reload the page.
+    </p>
+  </noscript>
 </div>
 
 </body>
