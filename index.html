@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,12 +22,20 @@
 <!-- Your CSS (keep it, but consider splitting) -->
 <link rel="stylesheet" href="assets/css/style.css">
 
+
+<script>
+  document.documentElement.classList.remove('no-js' , 'js');
+</script>
 <!-- Non-critical JS should be deferred -->
 <script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <script defer src="assets/js/script.js"></script>
 
 </head>
 <body>
+  <section id="no-js-banner" role="status" aria-live="polite">
+    This quiz needs JavaScript enabled to work. Please enable JavaScript and reload.
+  </section>
+
   <main role="main">
     <section id="topic-select" aria-labelledby="topic-title">
    <h1 id="topic-title">Welcome to Hellen's Quiz App!</h1>
@@ -50,13 +58,8 @@
       <p> You got <span id="score"></span>out of <span id="total"></span>correct!</p>
     <div id="stars"></div>
     <button id="play-again" aria-label="Play the quiz again">Play Again</button>
-
-   <noscript>
-  <section aria-labelledby="no-js-title">
-    <h2 id="no-js-title">JavaScript Required</h2>
-    <p>This quiz needs JavaScript enabled to work. Please enable JavaScript and reload the page.</p>
-  </section>
-</noscript>
+   </section>
+   
 
 </div>
 </main>
