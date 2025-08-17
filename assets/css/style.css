@@ -50,7 +50,7 @@ button {
     padding: 16px 30px;
     font-size: 1.3em;
     border: none;
-    background-color: #ffd6e0;
+    background-color: #4db6ac;
     border-radius: 12px;
     cursor: pointer;
     width: 80%;
@@ -59,7 +59,8 @@ button {
 
 /*Styling for the buttons on hover */
 button:hover {
-    background-color: #ffb6c1;
+    background-color: #00897b;
+    transform: scale(1.05);
 }
 #voice-toggle {
     background: transparent;
