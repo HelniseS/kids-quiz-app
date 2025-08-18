@@ -13,6 +13,7 @@ const scoreEl      = document.getElementById("score");
 const totalEl      = document.getElementById("total");
 const starsEl      = document.getElementById("stars");
 const playAgainBtn = document.getElementById("play-again");
+
 /* ========= Voice toggle ========= */
 const voiceToggle = document.createElement("button");
 voiceToggle.id = "voice-toggle";
@@ -28,7 +29,7 @@ voiceOn = (
  : voiceOn !== "false"
 );
 
-
+//-Update icon baded on voiceOn state-
 function updateVoiceIcon() {
        voiceToggle.innerHTML = voiceOn
        ? '<i class="fas fa-volume-up"></i>'
@@ -37,7 +38,7 @@ function updateVoiceIcon() {
 
      updateVoiceIcon();
 
-
+//-Handle mute/unmute click-
   voiceToggle.addEventListener("click", () => {
     voiceOn = !voiceOn;
     localStorage.setItem("voiceOn", String(voiceOn));
@@ -118,13 +119,16 @@ const quizzes = {
   ]
 };
 
+//-Game state variables-
 let quizData = [];
 let currentQuestion = 0;
 let score = 0;
 
+//-Sound effects-
 const correctSound = new Audio("assets/sounds/correct.mp3");
 const wrongSound = new Audio("assets/sounds/wrong.mp3");
 
+//-Start quiz-
 function startQuiz(topic) {
     quizData = quizzes[topic];
     if (!Array.isArray(quizData)) {
@@ -133,7 +137,7 @@ function startQuiz(topic) {
     }
     currentQuestion = 0;
     score = 0;
-
+//-Show quiz, hide othes-
     topicSelect.classList.add("hide");
     quizBox.classList.remove("hide");
     resultBox.classList.add("hide");
@@ -141,7 +145,7 @@ function startQuiz(topic) {
     
     loadQuestion();
 }
-
+//-Load question-
 function loadQuestion() {
     const quiz = quizData[currentQuestion];
     questionEl.textContent = quiz.question;
@@ -154,7 +158,7 @@ function loadQuestion() {
     say(quiz.question);
 
     
-
+//-Create answer buttons-
     quiz.options.forEach(opt => {
         const btn = document.createElement("button");
         btn.textContent = opt;
@@ -162,7 +166,7 @@ function loadQuestion() {
         optionsEl.appendChild(btn);
     });
 }
-
+//-Check answer-
 function checkAnswer(button, isCorrect) {
    stopSpeaking();
     optionsEl.querySelectorAll("button").forEach(b => b.disabled = true); // only option buttons
@@ -181,14 +185,14 @@ function checkAnswer(button, isCorrect) {
 
     nextBtn.classList.remove("hide");
 }
-
+//-Highlight correct answer-
 function highlightCorrect() {
     const correct = quizData[currentQuestion].answer;
     optionsEl.querySelectorAll("button").forEach(b => {
         if (b.textContent === correct) b.classList.add("correct");
     });
 }
-
+//-Next button-
 nextBtn.addEventListener("click", () => {
     currentQuestion++;
     if (currentQuestion < quizData.length) {
@@ -197,7 +201,7 @@ nextBtn.addEventListener("click", () => {
         showResult();
     }
 });
-
+//-Show results-
 function showResult() {
     stopSpeaking();
     quizBox.classList.add("hide");
@@ -212,7 +216,7 @@ function showResult() {
   }
   showStars(percent);
 }
-
+//-Show stars based on score-
 function showStars(percent) {
     starsEl.innerHTML = "";
     const stars = percent === 100 ? 3 : percent >= 80 ? 2 : percent >= 50 ? 1 : 0;
@@ -220,9 +224,10 @@ function showStars(percent) {
         
     }
 
-
+//-Play again-
 playAgainBtn.addEventListener("click", () => location.reload());
 
+//-Topic buttons-
 document.querySelectorAll(".topic-btn").forEach(btn => {
     btn.addEventListener("click", () => startQuiz(btn.dataset.topic));
     });

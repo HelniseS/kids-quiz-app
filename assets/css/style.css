@@ -1,6 +1,6 @@
 /*Set base styles for the entire page */
 body{
-    font-family: Comic Sans MS, sans-serif;
+    font-family: 'Popping', 'Comic Sans MS', sans-serif;
     background-color: #fff0f5;
     display: flex;
     justify-content: center;
@@ -22,7 +22,7 @@ h2{
 .hide {
     display: none;
 }
-
+/* Images in questions */
 #question-img img {
     max-width: 200px;
     height: auto;
@@ -59,9 +59,11 @@ button {
 
 /*Styling for the buttons on hover */
 button:hover {
-    background-color: #00897b;
+    background-color: teal;
     transform: scale(1.05);
+
 }
+/* Voice toggle button */
 #voice-toggle {
     background: transparent;
     color: #333;
@@ -76,6 +78,7 @@ button:hover {
 #voice-toggle:hover {
     color: #000;
 }
+/* Quiz answers buttons feedback */
 .correct {
     background-color: #4caf5a;
     color: white;
@@ -86,6 +89,8 @@ button:hover {
     color: white;
 }
 
+/* Feedback message */
+
 #feedback {
     font-size:  1.05em;
     margin: 10px 0;
@@ -93,7 +98,7 @@ button:hover {
     font-weight: 600;
 
 }
-
+/* Next button */
 #next-btn {
     background-color: #2196f3;
     color: white;
@@ -108,6 +113,7 @@ button:hover {
     background-color: #1976d2;
 }
 
+/* Result box */
 #result {
     background: white;
     max-width: 500px;
@@ -116,7 +122,7 @@ button:hover {
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
-
+/* Star Rating */
 .star {
     color: gold;
     font-size: 2em;
@@ -124,13 +130,14 @@ button:hover {
     display: inline-block;
     animation: pop 0.4s ease;
 }
-
+/* Star animation */
 @keyframes pop {
     0% { transform: scale(0); }
     50% { transform: scale(1.3); }
     100% { transform: scale(1); }
     }
-    
+  
+    /* No JavaScript banner */
 #no-js-banner {
     display: none;
     padding: 1rem;
@@ -140,7 +147,7 @@ button:hover {
     border-radius: 5rem;
     font-weight: bold;
 }
-
+/* Show banner only if JavaScript is disabled */
 .no-js #no-js-banner {
     display: block;
 }

@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hellen's Quiz App</title>
-    
+
+<!--Meta description for SEO-->   
 <meta name="description" content="A fun and interactive kids quiz app by Hellen. Play quizzes about animals, colors, numbers, and shapes, and test your knowledge with instant results!">  
+
 <!-- Load Font Awesome without blocking render -->
 <link rel="preload"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -15,22 +17,25 @@
 <!-- Your CSS (keep it, but consider splitting) -->
 <link rel="stylesheet" href="assets/css/style.css">
 
-
 <script>
   document.documentElement.classList.replace('no-js' , 'js');
 </script>
+
 <!-- Non-critical JS should be deferred -->
 <script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <script defer src="assets/js/script.js"></script>
 
 </head>
 <body>
+  <!--NO-JS Banner-->
   <section id="no-js-banner" role="status" aria-live="polite">
     <h2 class="sr-only">JavaScript required notice</h2>
     This quiz needs JavaScript enabled to work. Please enable JavaScript and reload.
   </section>
 
+<!--Main app wrapper-->
   <main>
+    <!--Topic selection screen-->
     <section id="topic-select" aria-labelledby="topic-title">
    <h1 id="topic-title">Welcome to Hellen's Quiz App!</h1>
    <button class="topic-btn" data-topic="Animals" aria-label="Start Animals Quiz">Animals</button>
@@ -39,6 +44,7 @@
    <button class="topic-btn" data-topic="Shapes" aria-label="Start Shapes Quiz">Shapes</button>
     </section>
 
+ <!--Quiz box-->
    <section id="quiz-box" class="hide" aria-labelledby="question">
     <h2 id="question">Loading question</h2>
     <div id="question-img"></div>
@@ -47,6 +53,7 @@
     <button id="next-btn" class="hide" aria-label="Go to next question">Next</button>
    </section>
  
+   <!--Results Screen-->>
    <section id="result" class="hide" aria-labelledby="result-title">
     <h2 id="result-title">Your Results</h2>
       <p> You got <span id="score"></span>out of <span id="total"></span>correct!</p>
