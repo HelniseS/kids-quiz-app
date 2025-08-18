@@ -21,11 +21,16 @@ voiceToggle.innerHTML = `<i class="fas fa-volume-up"></i>`;
 document.body.appendChild(voiceToggle);
 
 // persist setting
-let voiceOn = localStorage.getItem("voiceOn"); 
-voiceOn = voiceOn === null ? true : voiceOn !== "false";
+let voiceOn = localStorage.getItem("voiceOn");
+voiceOn = (
+ voiceOn === null 
+ ? true 
+ : voiceOn !== "false"
+);
+
 
 function updateVoiceIcon() {
-       voiceToggle.innerHTML = voiceOn 
+       voiceToggle.innerHTML = voiceOn
        ? '<i class="fas fa-volume-up"></i>'
      : '<i class="fas fa-volume-mute"></i>';
     } 
@@ -117,8 +122,8 @@ let quizData = [];
 let currentQuestion = 0;
 let score = 0;
 
-const correctSound = new Audio('assets/sounds/correct.mp3');
-const wrongSound = new Audio('assets/sounds/wrong.mp3');
+const correctSound = new Audio("assets/sounds/correct.mp3");
+const wrongSound = new Audio("assets/sounds/wrong.mp3");
 
 function startQuiz(topic) {
     quizData = quizzes[topic];
